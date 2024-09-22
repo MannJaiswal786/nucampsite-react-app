@@ -2,7 +2,6 @@ import {Col, Row} from 'reactstrap';
 import CampsiteCard from './CampsiteCard';
 import { selectAllCampsites } from './campsitesSlice';
 
-
 const CampsitesList = ({ setCampsiteId }) => {
     const campsites = selectAllCampsites();
     return (
