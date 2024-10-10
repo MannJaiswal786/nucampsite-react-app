@@ -3,9 +3,15 @@ import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FormGroup, Label } from "reactstrap";
 import  {validateCommentForm}  from '../../utils/validateCommentForm';
+import { useDispatch } from 'react-redux';
+import { addComment } from "./commentSlice"; 
 
 const CommentForm = ({ campsiteId }) => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+
 
   const handleSubmit = (values) => {
     const comment = {
@@ -13,8 +19,10 @@ const CommentForm = ({ campsiteId }) => {
       rating: values.rating,
       author: values.author,
       text: values.commentText,
+      date: new Date(Date.now()).toISOString()
     };
     console.log(comment);
+    dispatch(addComment(comment));
     setModalOpen(false);
   };
 
@@ -67,7 +75,7 @@ const CommentForm = ({ campsiteId }) => {
               <FormGroup>
                 <Label htmlFor='commentText'>Comment</Label>
                 <Field
-                name='commenttext'
+                name='commentText'
                 as='textarea'
                 rows='12'
                 className='form-control'
