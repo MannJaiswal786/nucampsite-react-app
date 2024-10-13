@@ -2,6 +2,11 @@ import {Card, CardImg, CardText, CardBody, Col} from 'reactstrap';
 
 
 const CampsiteDetail = ( {campsite}) => {
+
+    if (!campsite) {
+        return <div>Loading campsite details...</div>; // You can customize this as needed
+    }
+
 const {image, name, description} = campsite;
 
 return (
